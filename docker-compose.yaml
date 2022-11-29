@@ -1,0 +1,12 @@
+services:
+  # сервис приложения чат-бота для Telegram
+  references-bot-app:
+    build: .
+    container_name: references-bot-app
+    command: python chatbot.py
+    volumes:
+      - ./src:/src
+      - ./media:/media
+      - ./docs:/docs
+    env_file:
+      - .env
