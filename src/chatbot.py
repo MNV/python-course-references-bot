@@ -54,9 +54,6 @@ class ChatBotTelegram:
         self.gettemplate_command_handler = GetTemplateCommandHandler()
         self.upload_command_handler = UploadCommandHandler()
 
-        # обработчики сообщений
-        self.upload_message_handler = UploadMessageHandler()
-
         # обработчики функций обратного вызова
         self.upload_callback_handler = UploadCallbackHandler()
 

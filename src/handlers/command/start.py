@@ -10,7 +10,7 @@ class StartCommandHandler(CommandHandler):
     Обработчик команды `/start`.
     """
 
-    def handle(self, update: Update, **kwargs: Any):
+    def handle(self, update: Update, **kwargs: Any) -> None:
         """
         Начало работы с чат-ботом.
 
@@ -18,14 +18,15 @@ class StartCommandHandler(CommandHandler):
         :return:
         """
 
-        keyboard = ReplyKeyboardMarkup(
-            keyboard=kwargs["keyboard"], resize_keyboard=True
-        )
-        update.effective_chat.send_message(
-            text=f"Добро пожаловать, {update.message.chat.first_name}!" + "\n\n"
-            "Желаем приятного пользования сервисом.\n\n"
-            'Список команд бота раскрывается при вводе символа "/".\n'
-            "Также команды доступны в основном кнопочном меню бота.\n\n"
-            "/help - руководство пользователя.\n",
-            reply_markup=keyboard,
-        )
+        if update.effective_chat:
+            keyboard = ReplyKeyboardMarkup(
+                keyboard=kwargs["keyboard"], resize_keyboard=True
+            )
+            update.effective_chat.send_message(
+                text=f"Добро пожаловать, {update.message.chat.first_name}!" + "\n\n"
+                "Желаем приятного пользования сервисом.\n\n"
+                'Список команд бота раскрывается при вводе символа "/".\n'
+                "Также команды доступны в основном кнопочном меню бота.\n\n"
+                "/help - руководство пользователя.\n",
+                reply_markup=keyboard,
+            )

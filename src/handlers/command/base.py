@@ -10,7 +10,7 @@ class CommandHandler(ABC):
     """
 
     @abstractmethod
-    def handle(self, update: Update, **kwargs: Any):
+    def handle(self, update: Update, **kwargs: Any) -> None:
         """
         Обработка команды.
 

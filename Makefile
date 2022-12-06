@@ -6,15 +6,15 @@ build:
 
 # генерация документации
 docs-html:
-	docker compose run --workdir /docs references-bot-app /bin/bash -c "make html"
+	docker compose run --no-deps --workdir /docs references-bot-app /bin/bash -c "make html"
 
 # запуск форматирования кода
 format:
-	docker compose run --workdir / references-bot-app /bin/bash -c "black src docs/source/*.py; isort --profile black src docs/source/*.py"
+	docker compose run --no-deps --workdir / references-bot-app /bin/bash -c "black src docs/source/*.py; isort --profile black src docs/source/*.py"
 
 # запуск статического анализа кода (выявление ошибок типов и форматирования кода)
 lint:
-	docker compose run --workdir / references-bot-app /bin/bash -c "mypy src/chatbot.py"
+	docker-compose run --no-deps --workdir / references-bot-app /bin/bash -c "pylint src; flake8 src; mypy src; black --check src"
 
 # запуск автоматических тестов
 test:

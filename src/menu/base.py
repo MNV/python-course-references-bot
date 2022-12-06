@@ -6,10 +6,10 @@ class BaseMenu:
     Базовые функции для формирования меню.
     """
 
-    buttons = {}
-    default_buttons = {}
+    buttons: dict[str, str] = {}
+    default_buttons: dict[str, str] = {}
 
-    def set_buttons(self, items: dict[str, str]):
+    def set_buttons(self, items: dict[str, str]) -> "BaseMenu":
         """
         Назначение кнопок для меню.
 
@@ -20,7 +20,7 @@ class BaseMenu:
         self.buttons = items
         return self
 
-    def get_menu(self):
+    def get_menu(self) -> InlineKeyboardMarkup:
         """
         Получение сформированного меню.
         :return:
@@ -28,7 +28,7 @@ class BaseMenu:
 
         return self.build_buttons(self.buttons)
 
-    def build_buttons(self, buttons: dict[str, str]):
+    def build_buttons(self, buttons: dict[str, str]) -> InlineKeyboardMarkup:
         """
         Формирование меню.
 

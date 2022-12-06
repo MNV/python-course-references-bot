@@ -11,7 +11,7 @@ class GetTemplateCommandHandler(CommandHandler):
     Обработчик команды `/gettemplate`.
     """
 
-    def handle(self, update: Update, **kwargs: Any):
+    def handle(self, update: Update, **kwargs: Any) -> None:
         """
         Скачать шаблон для заполнения списка литературы.
 
@@ -19,5 +19,6 @@ class GetTemplateCommandHandler(CommandHandler):
         :return:
         """
 
-        with open(settings.template_file_path, mode="rb") as file:
-            update.effective_chat.send_document(document=file)
+        if update.effective_chat:
+            with open(settings.template_file_path, mode="rb") as file:
+                update.effective_chat.send_document(document=file)
